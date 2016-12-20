@@ -1,8 +1,12 @@
 require 'sinatra/base'
 
-class GraduationPlaylist < Sinatra::Base
+class CollectivePlaylist < Sinatra::Base
   get '/' do
-    'Hello GraduationPlaylist!'
+    'Welcome to Collective Playlist!'
+  end
+
+  get '/users/new' do
+    erb :'users/new'
   end
 
   # start the server if ruby file executed directly

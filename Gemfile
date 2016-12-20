@@ -12,7 +12,7 @@ group :test do
 end
 
 gem "sinatra"
-gem "dm-postrges-adapter"
+gem "dm-postgres-adapter"
 gem "data_mapper"
 gem "bcrypt"
 gem "rake"
