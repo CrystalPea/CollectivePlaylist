@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Collective Playlist</title>
+  </head>
+  <body>
+      <% if flash[:notice] %>
+      <h3><%= flash[:notice].join(" ") %></h3>
+      <% end %>
+      <% if flash[:error] %>
+      <h3><%= flash[:error].join(" ") %></h3>
+      <% end %>
+      <div>
+    <%= yield %>
+  </body>
+
+</html>

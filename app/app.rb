@@ -30,7 +30,7 @@ class CollectivePlaylist < Sinatra::Base
   end
 
   get '/dashboard' do
-    "Collective Playlist"
+    erb :dashboard
   end
 
   # start the server if ruby file executed directly
