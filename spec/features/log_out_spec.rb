@@ -18,4 +18,9 @@ RSpec.feature "Log out" do
     expect(current_path).to eq "/"
     expect(page).to have_content "Goodbye, we hope to see you again!"
   end
+
+  scenario "I should only see log out button when I'm logged in" do
+    visit '/'
+    expect(page).not_to have_content "Log out"
+  end
 end

@@ -5,7 +5,9 @@
   </head>
   <body>
 
+<% if current_user %>
     <a href="/sessions/delete">Log out</a>
+<% end %>
 
       <% if flash[:notice] %>
       <h3><%= flash[:notice].join(" ") %></h3>
