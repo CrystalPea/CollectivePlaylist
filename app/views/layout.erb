@@ -9,6 +9,10 @@
     <a href="/sessions/delete">Log out</a>
 <% end %>
 
+<% unless current_user %>
+    <a href="/users/new">Sign up</a>
+<% end %>
+
       <% if flash[:notice] %>
       <h3><%= flash[:notice].join(" ") %></h3>
       <% end %>

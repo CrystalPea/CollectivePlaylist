@@ -1,7 +1,8 @@
 module Helpers
 
   def sign_up(user)
-    visit("/users/new")
+    visit "/"
+    click_link("Sign up")
     fill_in "name", with: user[:name]
     fill_in "username", with: user[:username]
     fill_in "email", with: user[:email]
