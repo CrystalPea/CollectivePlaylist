@@ -10,8 +10,14 @@ class CollectivePlaylist < Sinatra::Base
   register Sinatra::Flash
   set :app_file, __FILE__
 
+  helpers do
+    def current_user
+      User.get session[:id]
+    end
+  end
+
   get '/' do
-    'Welcome to Collective Playlist!'
+    erb :index
   end
 
   get '/users/new' do
@@ -32,6 +38,12 @@ class CollectivePlaylist < Sinatra::Base
 
   get '/dashboard' do
     erb :dashboard
+  end
+
+  get '/sessions/delete' do
+    session[:id] = nil
+    flash.next[:notice] = ["Goodbye, we hope to see you again!"]
+    redirect "/"
   end
 
   # start the server if ruby file executed directly

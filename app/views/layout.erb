@@ -4,6 +4,9 @@
     <title>Collective Playlist</title>
   </head>
   <body>
+
+    <a href="/sessions/delete">Log out</a>
+
       <% if flash[:notice] %>
       <h3><%= flash[:notice].join(" ") %></h3>
       <% end %>
@@ -13,5 +16,4 @@
       <div>
     <%= yield %>
   </body>
-
 </html>
