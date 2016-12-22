@@ -44,6 +44,7 @@ RSpec.feature "Sign up as admin" do
     fill_in "username", with: "pea"
     fill_in "email", with: "peaczek"
     fill_in "password", with: "Mikocian"
+    fill_in "password_confirmation", with: "Mikocian"
     click_button "Sign up"
 
     expect(current_path).to eq "/users/new"
@@ -71,7 +72,20 @@ RSpec.feature "Sign up as admin" do
     expect(User.all.count).to eq(user_count + 1)
   end
 
-  xscenario "password confirmation does not match password" do
+  scenario "password confirmation does not match password" do
+    user_count = User.all.count
+    visit "/"
+    click_link("Sign up")
+    fill_in "name", with: user_1[:name]
+    fill_in "username", with: user_1[:username]
+    fill_in "email", with: user_1[:email]
+    fill_in "password", with: user_1[:password]
+    fill_in "password_confirmation", with: "BonGlon"
+    click_button "Sign up"
+    expect(current_path).to eq "/users/new"
+    expect(page).to have_content "Password does not match the confirmation"
+    expect(User.all.count).to eq(user_count)
+
   end
 
   xscenario "user uses forbidden special characters" do
