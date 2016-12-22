@@ -20,11 +20,20 @@ RSpec.feature "Sign up as admin" do
     }
   end
 
+  let(:user_3) do {
+    name: "Pola",
+    username: "peanee",
+    email: "peaczek@gmail.com",
+    password: "BombaPl0mba"
+    }
+  end
+
   scenario "I should be able to sign up" do
     user_count = User.all.count
     sign_up(user_1)
     expect(current_path).to eq "/dashboard"
     expect(page).to have_content "Welcome to Collective Playlist, #{User.first.name}!"
+    expect(page).not_to have_content "Sign up"
     expect(User.all.count).to eq(user_count + 1)
   end
 
@@ -53,11 +62,18 @@ RSpec.feature "Sign up as admin" do
   end
 
   scenario "I shouldn't be able to sign up with a taken e-mail address" do
+    user_count = User.all.count
+    sign_up(user_1)
+    click_link("Log out")
+    sign_up(user_3)
+    expect(current_path).to eq "/users/new"
+    expect(page).to have_content "Email is already taken"
+    expect(User.all.count).to eq(user_count + 1)
   end
 
-  scenario "password confirmation does not match password" do
+  xscenario "password confirmation does not match password" do
   end
 
-  scenario "user uses forbidden special characters" do
+  xscenario "user uses forbidden special characters" do
   end
 end
