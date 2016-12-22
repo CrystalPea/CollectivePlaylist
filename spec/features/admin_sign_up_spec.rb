@@ -45,9 +45,10 @@ RSpec.feature "Sign up as admin" do
   scenario "I shouldn't be able to sign up with a taken username" do
     user_count = User.all.count
     sign_up(user_1)
+    click_link("Log out")
     sign_up(user_2)
     expect(current_path).to eq "/users/new"
-    expect(page).to have_content "Username already exists"
+    expect(page).to have_content "Username is already taken"
     expect(User.all.count).to eq(user_count + 1)
   end
 
