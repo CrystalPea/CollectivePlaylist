@@ -16,6 +16,7 @@ class User
   validates_format_of :email, :as => :email_address
   validates_uniqueness_of :username, :email
   validates_confirmation_of :password
+  validates_presence_of :name, :username, :email, :password
 
   def initialize params
     self.name = params[:name]

@@ -90,4 +90,19 @@ RSpec.feature "Sign up as admin" do
 
   xscenario "user uses forbidden special characters" do
   end
+
+  scenario "I shouldn't be able to sign up with empty fields" do
+    user_count = User.all.count
+    visit("/users/new")
+    fill_in "name", with: ""
+    fill_in "username", with: ""
+    fill_in "email", with: ""
+    fill_in "password", with: ""
+    fill_in "password_confirmation", with: ""
+    click_button "Sign up"
+
+    expect(current_path).to eq "/users/new"
+    expect(page).to have_content "must not be blank"
+    expect(User.all.count).to eq(user_count)
+  end
 end
