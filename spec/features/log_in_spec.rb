@@ -20,8 +20,8 @@ RSpec.feature "Log in" do
     fill_in "password", with: "Mikocian"
     click_button "Log in"
     expect(current_path).to eq "/dashboard"
-    message = "Welcome to Creative Playlist, Pea!"
-    expect(page).to have content(message)
+    message = "Welcome to Collective Playlist, Pea!"
+    expect(page).to have_content(message)
   end
 
 end
