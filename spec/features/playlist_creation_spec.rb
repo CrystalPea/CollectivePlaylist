@@ -11,14 +11,17 @@ RSpec.feature "Playlist creation" do
     }
   end
 
+  let(:playlist_1) do {
+    title: "Neat Playlist",
+    description: "For our awesome party",
+    tracks_per_person: 2
+  }
+  end
+
   scenario "I want to create a playlist" do
     playlist_count = Playlist.all.count
     sign_up(user_1)
-    visit "/playlists/new"
-    fill_in 'title', with: "Neat Playlist"
-    fill_in 'description', with: "For our awesome party"
-    select 2, from: 'tracks_per_person'
-    click_button "Create Playlist"
+    create_playlist(playlist_1)
     expect(current_path).to eq "/playlists/view"
     message = "Your playlist 'Neat Playlist' has been created"
     expect(page).to have_content(message)

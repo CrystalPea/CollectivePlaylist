@@ -11,4 +11,12 @@ module Helpers
     click_button "Sign up"
   end
 
+  def create_playlist(playlist)
+    visit "/playlists/new"
+    fill_in 'title', with: playlist[:title]
+    fill_in 'description', with: playlist[:description]
+    select playlist[:tracks_per_person], from: 'tracks_per_person'
+    click_button "Create Playlist"
+  end
+
 end
