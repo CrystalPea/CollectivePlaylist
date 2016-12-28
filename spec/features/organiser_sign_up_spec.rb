@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.feature "Sign up as admin" do
+RSpec.feature "Sign up as organiser" do
 
   include Helpers
 

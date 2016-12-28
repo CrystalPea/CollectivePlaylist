@@ -2,6 +2,9 @@ ENV['RACK_ENV'] = 'development'
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
 require 'sinatra/flash'
+require_relative 'controllers/sessions'
+require_relative 'controllers/users'
+require_relative 'server'
 
 class CollectivePlaylist < Sinatra::Base
   use Rack::MethodOverride
@@ -10,57 +13,6 @@ class CollectivePlaylist < Sinatra::Base
   register Sinatra::Flash
   set :app_file, __FILE__
 
-  helpers do
-    def current_user
-      User.get session[:id]
-    end
-  end
-
-  get '/' do
-    erb :index
-  end
-
-  get '/users/new' do
-    erb :'users/new'
-  end
-
-  post '/users' do
-    new_user = User.new(params)
-    session[:id] = new_user.id if new_user.save
-    if session[:id]
-      flash.next[:notice] = ["Welcome to Collective Playlist, #{params[:name]}!"]
-      redirect "/dashboard"
-    else
-      flash.next[:error] = new_user.errors.full_messages
-      redirect "/users/new"
-    end
-  end
-
-  get '/dashboard' do
-    erb :dashboard
-  end
-
-  get '/sessions/new' do
-    erb :'sessions/new'
-  end
-
-  post '/sessions' do
-      user = User.authenticate(params)
-    if user
-      session[:id] = user.id
-      flash.next[:notice] = ["Welcome to Collective Playlist, #{user.name}!"]
-      redirect "/dashboard"
-    else
-      flash.next[:error] = ["Incorrect username and/or password"]
-      redirect "/sessions/new"
-    end
-  end
-
-  get '/sessions/delete' do
-    session[:id] = nil
-    flash.next[:notice] = ["Goodbye, we hope to see you again!"]
-    redirect "/"
-  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
