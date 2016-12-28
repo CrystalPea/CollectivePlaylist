@@ -32,9 +32,31 @@ RSpec.feature "Playlist creation" do
     expect(page).to have_content(message)
   end
 
-  xscenario "I need to fill in title and tracks per person to add a playlist" do
+  scenario "I need to fill in title to add a playlist" do
+    playlist_count = Playlist.all.count
+    sign_up(user_1)
+    visit "/playlists/new"
+    fill_in 'title', with: ""
+    fill_in 'description', with: "For our awesome party"
+    select 2, from: 'tracks_per_person'
+    click_button "Create Playlist"
+    expect(current_path).to eq "/playlists/new"
+    message = "Title must not be blank"
+    expect(page).to have_content(message)
+    expect(Playlist.all.count).to eq (playlist_count)
   end
 
-  xscenario "I don't need a description to add a playlist" do
+  scenario "I don't need a description to add a playlist" do
+    playlist_count = Playlist.all.count
+    sign_up(user_1)
+    visit "/playlists/new"
+    fill_in 'title', with: "Neat Playlist"
+    fill_in 'description', with: ""
+    select 2, from: 'tracks_per_person'
+    click_button "Create Playlist"
+    expect(current_path).to eq "/playlists/view"
+    message = "Your playlist 'Neat Playlist' has been created"
+    expect(page).to have_content(message)
+    expect(Playlist.all.count).to eq (playlist_count + 1)
   end
 end
