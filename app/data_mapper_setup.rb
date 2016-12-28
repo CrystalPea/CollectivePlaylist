@@ -5,6 +5,7 @@ database = ENV['DATABASE_URL'] || "postgres://localhost/collective_playlist_#{EN
 DataMapper.setup(:default, database)
 
 require_relative 'models/user'
+require_relative 'models/playlist'
 
 DataMapper.finalize
 DataMapper.auto_upgrade!
