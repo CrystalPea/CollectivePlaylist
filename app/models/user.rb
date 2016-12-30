@@ -13,7 +13,7 @@ class User
   attr_reader :password
   attr_accessor :password_confirmation
 
-  has n, :playlists
+  has n, :playlists, :through => Resource
 
   validates_format_of :email, :as => :email_address
   validates_uniqueness_of :username, :email

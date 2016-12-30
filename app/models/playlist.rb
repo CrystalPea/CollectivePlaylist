@@ -6,7 +6,7 @@ class Playlist
   property :description, Text
   property :tracks_per_person, Integer
 
-  belongs_to :user
+  has n, :users, :through => Resource
   validates_presence_of :title, :tracks_per_person
 
   def initialize params

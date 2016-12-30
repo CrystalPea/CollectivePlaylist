@@ -10,8 +10,7 @@ class CollectivePlaylist < Sinatra::Base
 
   post "/playlists" do
     playlist = Playlist.new params
-    # require 'pry'; binding.pry
-    current_user.playlists << playlist
+    playlist.users << current_user
     if playlist.save
       flash.next[:notice] = ["Your playlist '#{playlist.title}' has been created"]
       redirect "/playlists/view"
