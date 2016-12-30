@@ -13,10 +13,12 @@ class User
   attr_reader :password
   attr_accessor :password_confirmation
 
+  has n, :playlists
+
   validates_format_of :email, :as => :email_address
   validates_uniqueness_of :username, :email
   validates_confirmation_of :password
-  validates_presence_of :name, :username, :email, :password
+  validates_presence_of :name, :username, :email
 
   def initialize params
     self.name = params[:name]

@@ -9,11 +9,13 @@ class CollectivePlaylist < Sinatra::Base
   end
 
   post "/playlists" do
-    new_playlist = Playlist.new(params, session[:id])
-    if new_playlist.save
-      flash.next[:notice] = ["Your playlist '#{new_playlist.title}' has been created"]
+    playlist = Playlist.new params
+    # require 'pry'; binding.pry
+    current_user.playlists << playlist
+    if playlist.save
+      flash.next[:notice] = ["Your playlist '#{playlist.title}' has been created"]
       redirect "/playlists/view"
-    else flash.next[:error] = new_playlist.errors.full_messages
+    else flash.next[:error] = playlist.errors.full_messages
       redirect "/playlists/new"
     end
   end

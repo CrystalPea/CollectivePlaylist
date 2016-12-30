@@ -26,6 +26,7 @@ RSpec.feature "Playlist creation" do
     message = "Your playlist 'Neat Playlist' has been created"
     expect(page).to have_content(message)
     expect(Playlist.all.count).to eq (playlist_count + 1)
+    expect(User.first.playlists.count).to eq 1
   end
 
   scenario "I should not be able to create a playlist while not logged in" do

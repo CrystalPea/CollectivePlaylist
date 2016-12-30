@@ -18,7 +18,7 @@ RSpec.feature "Adding tracks to playlist" do
   }
   end
 
-  scenario "I want to be able to add a track to the playlist" do
+  xscenario "I want to be able to add a track to the playlist" do
     sign_up(user_1)
     create_playlist(playlist_1)
     track_count = Track.all.count
