@@ -1,1 +1,12 @@
-Playlists
+My playlists:
+
+<% n = 1
+current_user.playlists.each do |playlist| %>
+<%= playlist.title%>
+<%= playlist.description%>
+<%= playlist.tracks_per_person%>
+<form action="/tracks/new" method="get">
+  <input type='hidden' name="playlist_id"  value="<%=playlist.id%>"/>
+  <input type=submit value="Add track(s)" />
+</form>
+<% end %>

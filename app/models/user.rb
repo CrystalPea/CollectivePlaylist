@@ -14,6 +14,7 @@ class User
   attr_accessor :password_confirmation
 
   has n, :playlists, :through => Resource
+  has n, :tracks, :through => Resource
 
   validates_format_of :email, :as => :email_address
   validates_uniqueness_of :username, :email

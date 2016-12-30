@@ -18,14 +18,14 @@ RSpec.feature "Adding tracks to playlist" do
   }
   end
 
-  xscenario "I want to be able to add a track to the playlist" do
+  scenario "I want to be able to add a track to the playlist" do
     sign_up(user_1)
     create_playlist(playlist_1)
     track_count = Track.all.count
     click_button "Add track(s)"
     fill_in "artist", with: "Shpongle"
     fill_in "title", with: "Nothing Lasts"
-    click_button "Add track"
+    click_button "Add track(s)"
     expect(Track.all.count).to eq(track_count + 1)
     expect(Playlist.first.tracks.count).to eq 1
     expect(current_path).to eq("/playlists/view")

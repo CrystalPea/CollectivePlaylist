@@ -5,6 +5,8 @@ class Track
   property :artist, String
   property :title, String
 
+  has n, :users, :through => Resource
+  has n, :playlists, :through => Resource
   validates_presence_of :artist, :title
 
   def initialize params
