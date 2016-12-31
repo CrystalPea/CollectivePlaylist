@@ -1,0 +1,8 @@
+<h3> Add contributors to <%= @playlist.title %>:</h3>
+
+<h4>Invite existing users to contribute:</h4>
+<p>Separate usernames with commas</p>
+<form action="/contributors" method="post">
+  <input type="text" name="existing_users_usernames" placeholder:"username" />
+  <input type="submit" value="Add contributor(s)" />
+</form>

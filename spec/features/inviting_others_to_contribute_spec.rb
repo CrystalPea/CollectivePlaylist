@@ -31,12 +31,12 @@ RSpec.feature "Inviting others to contribute" do
     log_out
     sign_up(user_1)
     create_playlist(playlist_1)
-    click_button("Add contributors")
-    expect(current_path).to eq "/invite/new"
+    click_button("Add contributor(s)")
+    expect(current_path).to eq "/contributors/new"
     expect(page).to have_content(playlist_1[:title])
     fill_in "existing_users_usernames", with: user_2[:username]
-    click_button("Add contributors")
-    expect(current_path).to eq "playlists/view"
+    click_button("Add contributor(s)")
+    expect(current_path).to eq "/playlists/view"
     message = "#{user_2[:name]} has been added as a contributor to #{playlist_1[:title]}"
     expect(page).to have_content(message)
     expect(Playlist.first.users.count).to eq 2
