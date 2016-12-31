@@ -19,4 +19,11 @@ module Helpers
     click_button "Create Playlist"
   end
 
+  def add_track(track)
+    click_button "Add track(s)"
+    fill_in "artist", with: track[:artist]
+    fill_in "title", with: track[:title]
+    click_button "Add track(s)"
+  end
+
 end

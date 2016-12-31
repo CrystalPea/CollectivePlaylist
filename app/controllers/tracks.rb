@@ -11,6 +11,10 @@ class CollectivePlaylist < Sinatra::Base
 
 
   post "/tracks" do
+    unless session[:playlist_id]
+      flash.next[:error] = "Something went wrong."
+      redirect "/playlists/view"
+    end
     playlist = Playlist.get(session[:playlist_id])
     track = Track.new params
     track.playlists << playlist
