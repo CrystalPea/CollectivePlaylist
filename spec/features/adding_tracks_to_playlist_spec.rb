@@ -47,8 +47,12 @@ RSpec.feature "Adding tracks to playlist" do
     expect(page).to have_content("Track has been added to 'Neat Playlist'")
   end
 
-  xscenario "I want to see how many more tracks I can add" do
-
+  scenario "I want to see how many more tracks I can add" do
+    sign_up(user_1)
+    create_playlist(playlist_1)
+    expect(page).to have_content("You can add 2 more track(s)")
+    add_track(track_1)
+    expect(page).to have_content("You can add 1 more track(s)")
   end
 
   scenario "I shouldn't be able to add more tracks than my allowance" do
