@@ -1,7 +1,7 @@
 class CollectivePlaylist < Sinatra::Base
 
   get "/contributors/new" do
-    unless current_user && params[:playlist_id]
+    unless current_user && (params[:playlist_id] || session[:playlist_id])
       flash.next[:error] = ["Something went wrong, try again."]
       redirect "/"
     end
@@ -11,15 +11,28 @@ class CollectivePlaylist < Sinatra::Base
   end
 
   post "/contributors" do
-    contributor = User.first(username: params[:existing_users_usernames])
-    unless contributor
-      flash.next[:error] = ["No such user in database."]
-      redirect "/contributors/new"
-    end
     playlist = Playlist.get session[:playlist_id]
-    playlist.users << contributor
+    before = []
+    (playlist.users).each { |user| before << user }
+    if params[:existing_users_usernames].include?(",")
+      contributors = params[:existing_users_usernames].split(",")
+      contributors.each do |contributor|
+        playlist.users << User.first(username: contributor)
+      end
+    else
+      contributor = User.first(username: params[:existing_users_usernames])
+      unless contributor
+        flash.next[:error] = ["No such user in database."]
+        redirect "/contributors/new"
+      end
+      playlist.users << contributor
+    end
     if playlist.save
-      flash.next[:notice] = ["#{contributor.name} has been added as a contributor to #{playlist.title}"]
+      messages = []
+      (playlist.users - before).each do |user|
+        messages << "#{user.name} has been added as a contributor to #{playlist.title}"
+      end
+        flash.next[:notice] = messages
       redirect "playlists/view"
     else
       flash.next[:error] = playlist.errors.full_messages
