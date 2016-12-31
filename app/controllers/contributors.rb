@@ -11,19 +11,19 @@ class CollectivePlaylist < Sinatra::Base
   end
 
   post "/contributors" do
-    # require "pry"; binding.pry
     contributor = User.first(username: params[:existing_users_usernames])
-    if contributor
-      playlist = Playlist.get session[:playlist_id]
-
-      playlist.users << contributor
-      if playlist.save
-        flash.next[:notice] = ["#{contributor.name} has been added as a contributor to #{playlist.title}"]
-        redirect "playlists/view"
-      else
-        flash.next[:error] = playlist.errors.full_messages
-        redirect "/contributors/new"
-      end
+    unless contributor
+      flash.next[:error] = ["No such user in database."]
+      redirect "/contributors/new"
+    end
+    playlist = Playlist.get session[:playlist_id]
+    playlist.users << contributor
+    if playlist.save
+      flash.next[:notice] = ["#{contributor.name} has been added as a contributor to #{playlist.title}"]
+      redirect "playlists/view"
+    else
+      flash.next[:error] = playlist.errors.full_messages
+      redirect "/contributors/new"
     end
   end
 
