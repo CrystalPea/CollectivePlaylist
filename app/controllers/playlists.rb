@@ -22,4 +22,9 @@ class CollectivePlaylist < Sinatra::Base
   get '/playlists/view' do
     erb :'playlists/view'
   end
+
+  get '/playlists/:playlist_id' do
+    @playlist = Playlist.get params[:playlist_id]
+    erb :'playlists/id'
+  end
 end

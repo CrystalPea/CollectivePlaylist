@@ -5,22 +5,24 @@
   </head>
   <body>
 
-<% if current_user %>
-    <a href="/sessions/delete">Log out</a>
-<% end %>
 
-<% unless current_user %>
-    <a href="/users/new">Sign up</a>
-    <a href="/sessions/new">Log in</a>
-<% end %>
+    <% if current_user %>
+        <a href="/playlists/new">Add playlist</a>
+        <a href="/playlists/view">View Playlists</a>
+        <a href="/sessions/delete">Log out</a>
+    <% end %>
 
-      <% if flash[:notice] %>
+    <% unless current_user %>
+        <a href="/users/new">Sign up</a>
+        <a href="/sessions/new">Log in</a>
+    <% end %>
+
+    <% if flash[:notice] %>
       <h3><%= flash[:notice].join(" ") %></h3>
-      <% end %>
-      <% if flash[:error] %>
+    <% end %>
+    <% if flash[:error] %>
       <h3><%= flash[:error].join(" ") %></h3>
-      <% end %>
-      <div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

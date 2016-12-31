@@ -1,0 +1,14 @@
+<p><a href="/playlists/<%=@playlist.id%>"><%=@playlist.title%></a></p>
+<p><%= @playlist.description%></p>
+<p> Tracks per person: <%= @playlist.tracks_per_person%></p>
+<p><%if (@playlist.tracks && current_user.tracks).count < @playlist.tracks_per_person %>
+  <form action="/tracks/new" method="get">
+    <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
+    <input type=submit value="Add track(s)" />
+  </form>
+<% end %></p>
+<p> You can add <%= @playlist.tracks_per_person - (@playlist.tracks && current_user.tracks).count %> more track(s) </p>
+<h4>Tracks in this playlist:</h4>
+<%@playlist.tracks.each do |track|%>
+  <p><%=track.title%> by <%=track.artist%> (contributed by <%=track.users.first.name%>)</p>
+<%end%>
