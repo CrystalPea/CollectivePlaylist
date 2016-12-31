@@ -61,15 +61,25 @@ RSpec.feature "Adding tracks to playlist" do
     add_track(track_1)
     add_track(track_2)
     expect(page).not_to have_button("Add track(s)")
+    track_count = Track.all.count
     visit "/tracks/new"
     fill_in "artist", with: track_3[:artist]
     fill_in "title", with: track_3[:title]
     click_button "Add track(s)"
+    expect(Track.all.count).to eq track_count
     expect(current_path).to eq "/playlists/view"
-    expect(page).to have_content "error"
+    expect(page).to have_content "Something went wrong."
 
   end
 
-  xscenario "I should not be able to add a track with an empty field" do
+  scenario "I should not be able to add a track with an empty field" do
+    sign_up(user_1)
+    create_playlist(playlist_1)
+    click_button "Add track(s)"
+    fill_in "artist", with: ""
+    fill_in "title", with: ""
+    click_button "Add track(s)"
+    expect(current_path).to eq "/tracks/new"
+    expect(page).to have_content "must not be"
   end
 end
