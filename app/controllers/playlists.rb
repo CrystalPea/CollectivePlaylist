@@ -20,6 +20,7 @@ class CollectivePlaylist < Sinatra::Base
   end
 
   get '/playlists/view' do
+    session[:playlist_id] = nil
     erb :'playlists/view'
   end
 

@@ -5,7 +5,8 @@ class CollectivePlaylist < Sinatra::Base
       flash.next[:error] = ["Something went wrong, try again."]
       redirect "/"
     end
-    session[:playlist_id] = params[:playlist_id]
+    session[:playlist_id] = params[:playlist_id] if session[:playlist_id] == nil
+    # require "pry"; binding.pry
     @playlist = Playlist.get session[:playlist_id]
     erb :'contributors/new'
   end
@@ -32,6 +33,7 @@ class CollectivePlaylist < Sinatra::Base
       (playlist.users - before).each do |user|
         messages << "#{user.name} has been added as a contributor to #{playlist.title}"
       end
+        session[:playlist_id] = nil
         flash.next[:notice] = messages
       redirect "playlists/view"
     else

@@ -7,6 +7,16 @@
     <input type=submit value="Add track(s)" />
   </form>
 <% end %></p>
+<h4>Contributors:</h4>
+<%@playlist.users.each do |user| %>
+<p><%=user.name%></p>
+<%end%>
+<%if @playlist.admin_id == current_user.id %>
+  <form action="/contributors/new" method="get">
+    <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
+    <input type=submit value="Add contributor(s)" />
+  </form>
+<% end %>
 <p> You can add <%= @playlist.tracks_per_person - (@playlist.tracks && current_user.tracks).count %> more track(s) </p>
 <h4>Tracks in this playlist:</h4>
 <%@playlist.tracks.each do |track|%>
