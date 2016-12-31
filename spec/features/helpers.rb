@@ -26,4 +26,8 @@ module Helpers
     click_button "Add track(s)"
   end
 
+  def log_out
+    click_link("Log out")
+  end
+
 end

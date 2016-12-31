@@ -9,7 +9,7 @@ class CollectivePlaylist < Sinatra::Base
   end
 
   post "/playlists" do
-    playlist = Playlist.new params
+    playlist = Playlist.new(params, session[:id])
     playlist.users << current_user
     if playlist.save
       flash.next[:notice] = ["Your playlist '#{playlist.title}' has been created"]
