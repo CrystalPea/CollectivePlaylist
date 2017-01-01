@@ -18,7 +18,12 @@ class CollectivePlaylist < Sinatra::Base
     if params[:existing_users_usernames].include?(",")
       contributors = params[:existing_users_usernames].split(",")
       contributors.each do |contributor|
-        playlist.users << User.first(username: contributor)
+        user = User.first(username: contributor)
+        unless user
+          flash.next[:error] = ["No such user as #{contributor} in database."]
+          redirect "/contributors/new"
+        end
+        playlist.users << user
       end
     else
       contributor = User.first(username: params[:existing_users_usernames])

@@ -18,6 +18,7 @@ class CollectivePlaylist < Sinatra::Base
 
   get '/sessions/delete' do
     session[:id] = nil
+    session[:playlist_id] = nil
     flash.next[:notice] = ["Goodbye, we hope to see you again!"]
     redirect "/"
   end
