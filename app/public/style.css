@@ -24,6 +24,12 @@ a.header-link:hover {
   color: #007399;
 }
 
+.flash {
+  padding-top: 20px;
+  background-color:  #e6faff;
+  margin: 0;
+}
+
 .page-items {
   display: inline-block;
   margin: 1em;
@@ -134,6 +140,7 @@ a.nav-item:hover {
   font-size: 0.9em;
 }
 
+/*Homepage*/
 .main-buttons {
   padding-top: 70px;
 }

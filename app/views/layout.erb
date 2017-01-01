@@ -21,13 +21,14 @@
         <% end %>
       </ul>
     </div>
-
-    <% if flash[:notice] %>
-      <h3><%= flash[:notice].join(" ") %></h3>
-    <% end %>
-    <% if flash[:error] %>
-      <h3><%= flash[:error].join(" ") %></h3>
-    <% end %>
+    <div id="flash">
+      <% if flash[:notice] %>
+        <h3 class="flash"><%= flash[:notice].join(" ") %></h3>
+      <% end %>
+      <% if flash[:error] %>
+        <h3 class="flash"><%= flash[:error].join(" ") %></h3>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
