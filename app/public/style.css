@@ -1,9 +1,9 @@
 body {
-  font-family: helvetica;
+  font-family: arial, sans-serif;
 }
 
-h2 {
-  font-family: impact;
+h2, h3, h4 {
+  font-family: impact, sans-serif;
 }
 
 #navbar {
@@ -35,7 +35,7 @@ h2 {
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-family: impact;
+  font-family: impact, sans-serif;
   text-decoration: none;
 }
 
@@ -46,3 +46,59 @@ a.nav-item:link, a.nav-item:visited {
 a.nav-item:hover {
     color: #007399;
   }
+
+a.header-link:link, a.header-link:visited {
+  color: #00a3cc;
+  text-decoration: none;
+}
+
+a.header-link:hover {
+    color:  #00ccff;
+    text-decoration: none;
+  }
+
+#playlist-tracks, #playlist-contributors {
+  display: inline-block;
+  margin: 1em;
+  width: 40%;
+  vertical-align: top;
+}
+
+.pagetop {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color:  #e6faff;
+  color: #007399;
+}
+
+.page-items {
+  display: inline-block;
+  margin: 1em;
+  width: 25%;
+  vertical-align: top;
+}
+
+.button {
+  background-color: #00ccff;
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+  height: 50px;
+  color: white;
+  font-family: impact, sans-serif;
+  font-size: 1em;
+}
+
+.button-small {
+  background-color: #00ccff;
+  border: none;
+  border-radius: 5px;
+  width: 120px;
+  height: 30px;
+  color: white;
+  font-family: "arial black", sans-serif;
+  font-size: auto;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-top: 5px;
+}

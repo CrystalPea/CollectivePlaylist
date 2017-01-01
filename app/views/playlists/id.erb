@@ -1,24 +1,33 @@
-<p><a href="/playlists/<%=@playlist.id%>"><%=@playlist.title%></a></p>
-<p><%= @playlist.description%></p>
-<p> Tracks per person: <%= @playlist.tracks_per_person%></p>
-<p><%if (@playlist.tracks && current_user.tracks).count < @playlist.tracks_per_person %>
-  <form action="/tracks/new" method="get">
-    <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
-    <input type=submit value="Add track(s)" />
-  </form>
-<% end %></p>
-<h4>Contributors:</h4>
-<%@playlist.users.each do |user| %>
-<p><%=user.name%></p>
-<%end%>
-<%if @playlist.admin_id == current_user.id %>
-  <form action="/contributors/new" method="get">
-    <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
-    <input type=submit value="Add contributor(s)" />
-  </form>
-<% end %>
-<p> You can add <%= @playlist.tracks_per_person - (@playlist.tracks && current_user.tracks).count %> more track(s) </p>
-<h4>Tracks in this playlist:</h4>
-<%@playlist.tracks.each do |track|%>
-  <p><%=track.title%> by <%=track.artist%> (contributed by <%=track.users.first.name%>)</p>
-<%end%>
+<div id="playlist">
+  <div class="pagetop">
+    <h2>&#9835; <a class="header-link" href="/playlists/<%=@playlist.id%>"><%=@playlist.title%></a></h2>
+    <p>Description: <%= @playlist.description%></p>
+    <p>Tracks per person: <%= @playlist.tracks_per_person%></p>
+  </div>
+  <div id="playlist-tracks">
+    <h4>Tracks in this playlist:</h4>
+    <%@playlist.tracks.each do |track|%>
+      <p>&#9834; <%=track.title%> by <%=track.artist%> (contributed by <%=track.users.first.name%>)</p>
+    <%end%>
+    <p> You can add <%= @playlist.tracks_per_person - (@playlist.tracks && current_user.tracks).count %> more track(s) </p>
+    <p><%if (@playlist.tracks && current_user.tracks).count < @playlist.tracks_per_person %>
+      <form action="/tracks/new" method="get">
+        <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
+        <input class="button" type=submit value="Add track(s)" />
+      </form>
+    <% end %></p>
+  </div>
+
+  <div id="playlist-contributors">
+    <h4>Contributors:</h4>
+    <%@playlist.users.each do |user| %>
+    <p>☺ <%=user.name%></p>
+    <%end%>
+    <%if @playlist.admin_id == current_user.id %>
+      <form action="/contributors/new" method="get">
+        <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
+        <input class="button" type=submit value="Add contributor(s)" />
+      </form>
+    <% end %>
+  </div>
+</div>
