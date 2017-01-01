@@ -1,12 +1,13 @@
 class CollectivePlaylist < Sinatra::Base
 
   get '/tracks/new' do
-    if current_user
-      session[:playlist_id] = params[:playlist_id]
-      erb :'tracks/new'
-    else flash.next[:error] = ["You need to be logged in to add a track"]
+    unless current_user && (params[:playlist_id] || session[:playlist_id])
+      flash.next[:error] = ["Something went wrong, try again."]
       redirect "/"
     end
+      session[:playlist_id] = params[:playlist_id] if session[:playlist_id] == nil
+      @playlist = Playlist.get session[:playlist_id]
+      erb :'tracks/new'
   end
 
 

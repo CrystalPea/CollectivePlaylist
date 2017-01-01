@@ -1,8 +1,11 @@
-<form action="/users" method="post">
-  <input type="text" name="name" placeholder="Name" />
-  <input type="text" name="username" placeholder="Username" />
-  <input type="email" name="email" placeholder="E-mail Address" />
-  <input type ="password" name="password" placeholder="Password" />
-  <input type ="password" name="password_confirmation" placeholder="Confirm Password" />
-  <input type="submit" value="Sign up" />
-</form>
+<ul class="form">
+  <li class="form-item"><h2>Sign up</h2></li>
+  <form action="/users" method="post">
+    <li class="form-item"><input  class="form-text-input" type="text" name="name" placeholder="Name" /></li>
+    <li class="form-item"><input  class="form-text-input" type="text" name="username" placeholder="Username" /></li>
+    <li class="form-item"><input  class="form-text-input" type="email" name="email" placeholder="E-mail Address" /></li>
+    <li class="form-item"><input  class="form-text-input" type ="password" name="password" placeholder="Password" /></li>
+    <li class="form-item"><input  class="form-text-input" type ="password" name="password_confirmation" placeholder="Confirm Password" /></li>
+    <li class="form-item"><input class="button" type="submit" value="Sign up" /></li>
+  </form>
+</ul>

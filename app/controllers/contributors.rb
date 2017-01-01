@@ -6,7 +6,6 @@ class CollectivePlaylist < Sinatra::Base
       redirect "/"
     end
     session[:playlist_id] = params[:playlist_id] if session[:playlist_id] == nil
-    # require "pry"; binding.pry
     @playlist = Playlist.get session[:playlist_id]
     erb :'contributors/new'
   end

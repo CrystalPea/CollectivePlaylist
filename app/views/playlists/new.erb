@@ -1,11 +1,14 @@
-<form action="/playlists" method="post">
-  <input type="text" name="title" placeholder="Title" />
-  <input type="text" name="description" placeholder="Description" />
-  <label for="tracks_per_person">Tracks per person</label>
-  <select name="tracks_per_person">
-    <% (1..12).each do |number| %>
-    <option value='<%=number%>'><%=number%></option>
-    <%end%>
-  </select>
-  <input type="submit" value="Create Playlist" />
-</form>
+<ul class="form">
+  <form action="/playlists" method="post">
+    <li class="form-item"><h2>Add New Playlist:</h2></li>
+    <li class="form-item"><input class="form-text-input" type="text" name="title" placeholder="Title" /></li>
+    <li class="form-item"><input class="form-text-input" type="text" name="description" placeholder="Description" /></li>
+    <li class="form-item"><label for="tracks_per_person">Tracks per person</label>
+    <select name="tracks_per_person">
+      <% (1..12).each do |number| %>
+      <option value='<%=number%>'><%=number%></option>
+      <%end%>
+    </select></li>
+    <li class="form-item"><input class="button" type="submit" value="Create Playlist" /></li>
+  </form>
+</ul>
