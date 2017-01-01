@@ -3,19 +3,24 @@
   <head>
     <title>Collective Playlist</title>
   </head>
-  <body>
+  <body align="center">
 
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <div id="navbar">
+      <ul id="navlist">
+        <li class="nav-item" id="nav-logo-item"><a href="/"><img id="nav-logo-img" src="/cp_logo.png"></a></li>
+        <% if current_user %>
+          <li class="nav-item"><a class="nav-item" href="/playlists/new">Add playlist</a></li>
+          <li class="nav-item"><a class="nav-item" href="/playlists/view">View Playlists</a></li>
+          <li class="nav-item"><a class="nav-item" href="/sessions/delete">Log out</a></li>
+        <% end %>
 
-    <% if current_user %>
-        <a href="/playlists/new">Add playlist</a>
-        <a href="/playlists/view">View Playlists</a>
-        <a href="/sessions/delete">Log out</a>
-    <% end %>
-
-    <% unless current_user %>
-        <a href="/users/new">Sign up</a>
-        <a href="/sessions/new">Log in</a>
-    <% end %>
+        <% unless current_user %>
+          <li class="nav-item"><a class="nav-item" href="/users/new">Sign up</a></li>
+          <li class="nav-item"><a class="nav-item" href="/sessions/new">Log in</a></li>
+        <% end %>
+      </ul>
+    </div>
 
     <% if flash[:notice] %>
       <h3><%= flash[:notice].join(" ") %></h3>

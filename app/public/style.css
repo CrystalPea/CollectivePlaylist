@@ -1,0 +1,48 @@
+body {
+  font-family: helvetica;
+}
+
+h2 {
+  font-family: impact;
+}
+
+#navbar {
+  background-color: #00ccff;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+#navlist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#nav-logo-img {
+  width: 100px;
+}
+
+#nav-logo-item {
+  float: left;
+  margin-right: 2%;
+  width: 100px;
+}
+
+.nav-item {
+  float: right;
+  display: inline;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: impact;
+  text-decoration: none;
+}
+
+a.nav-item:link, a.nav-item:visited {
+  color: white;
+}
+
+a.nav-item:hover {
+    color: #007399;
+  }
