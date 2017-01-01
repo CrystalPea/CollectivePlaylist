@@ -9,7 +9,7 @@ class CollectivePlaylist < Sinatra::Base
     session[:id] = new_user.id if new_user.save
     if session[:id]
       flash.next[:notice] = ["Welcome to Collective Playlist, #{params[:name]}!"]
-      redirect "/dashboard"
+      redirect "/"
     else
       flash.next[:error] = new_user.errors.full_messages
       redirect "/users/new"

@@ -6,7 +6,7 @@ RSpec.feature "Log in" do
   let(:user_1) do {
     name: "Pea",
     username: "pea",
-    email: "peaczek@gmail.com",
+    email: "pea@gmail.com",
     password: "Mikocian"
     }
   end
@@ -19,7 +19,7 @@ RSpec.feature "Log in" do
     fill_in "username", with: "pea"
     fill_in "password", with: "Mikocian"
     click_button "Log in"
-    expect(current_path).to eq "/dashboard"
+    expect(current_path).to eq "/"
     message = "Welcome to Collective Playlist, Pea!"
     expect(page).to have_content(message)
   end

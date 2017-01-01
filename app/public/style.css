@@ -42,6 +42,17 @@ a.header-link:hover {
   font-size: 1em;
 }
 
+.button-big {
+  background-color: #00ccff;
+  border: none;
+  border-radius: 7px;
+  width: 200px;
+  height: 75px;
+  color: white;
+  font-family: impact, sans-serif;
+  font-size: 1.2em;
+}
+
 .button-small {
   background-color: #00ccff;
   border: none;
@@ -121,4 +132,13 @@ a.nav-item:hover {
   width: 130px;
   height: 20px;
   font-size: 0.9em;
+}
+
+.main-buttons {
+  padding-top: 70px;
+}
+
+.main-button {
+  margin-top: 15px;
+  margin-bottom: 10px;
 }

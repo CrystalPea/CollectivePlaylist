@@ -8,8 +8,4 @@ class CollectivePlaylist < Sinatra::Base
   get '/' do
     erb :index
   end
-
-  get '/dashboard' do
-    erb :dashboard
-  end
 end

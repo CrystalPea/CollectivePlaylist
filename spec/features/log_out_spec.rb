@@ -7,7 +7,7 @@ RSpec.feature "Log out" do
   let(:user_1) do {
     name: "Pea",
     username: "pea",
-    email: "peaczek@gmail.com",
+    email: "pea@gmail.com",
     password: "Mikocian"
     }
   end

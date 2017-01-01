@@ -6,7 +6,7 @@ RSpec.feature "Adding tracks to playlist" do
   let(:user_1) do {
     name: "Pea",
     username: "pea",
-    email: "peaczek@gmail.com",
+    email: "pea@gmail.com",
     password: "Mikocian"
     }
   end
@@ -63,12 +63,8 @@ RSpec.feature "Adding tracks to playlist" do
     expect(page).not_to have_button("Add track(s)")
     track_count = Track.all.count
     visit "/tracks/new"
-    fill_in "artist", with: track_3[:artist]
-    fill_in "title", with: track_3[:title]
-    click_button "Add track(s)"
-    expect(Track.all.count).to eq track_count
-    expect(current_path).to eq "/playlists/view"
-    expect(page).to have_content "Something went wrong."
+    expect(current_path).to eq "/"
+    expect(page).to have_content "Something went wrong"
 
   end
 

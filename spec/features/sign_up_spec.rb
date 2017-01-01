@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-RSpec.feature "Sign up as organiser" do
+RSpec.feature "Sign up" do
 
   include Helpers
 
   let(:user_1) do {
     name: "Pea",
     username: "pea",
-    email: "peaczek@gmail.com",
+    email: "pea@gmail.com",
     password: "Mikocian"
     }
   end
@@ -23,7 +23,7 @@ RSpec.feature "Sign up as organiser" do
   let(:user_3) do {
     name: "Pola",
     username: "peanee",
-    email: "peaczek@gmail.com",
+    email: "pea@gmail.com",
     password: "BombaPl0mba"
     }
   end
@@ -31,7 +31,7 @@ RSpec.feature "Sign up as organiser" do
   scenario "I should be able to sign up" do
     user_count = User.all.count
     sign_up(user_1)
-    expect(current_path).to eq "/dashboard"
+    expect(current_path).to eq "/"
     expect(page).to have_content "Welcome to Collective Playlist, #{User.first.name}!"
     expect(page).not_to have_content "Sign up"
     expect(User.all.count).to eq(user_count + 1)

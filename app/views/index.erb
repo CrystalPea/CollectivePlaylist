@@ -1,1 +1,30 @@
-'Welcome to Collective Playlist!'
+<div class="pagetop">
+  <h2>'Welcome to Collective Playlist!'<h2>
+</div>
+<div class="main-buttons">
+<% if current_user %>
+  <div class="main-button">
+    <form action="/playlists/new" method="get">
+      <input class="button-big" type="submit" value="Add playlist"/>
+    </form>
+  </div>
+  <div class="main-button">
+    <form action="/playlists/view" method="get">
+      <input class="button-big" type="submit" value="View playlists"/>
+    </form>
+  </div>
+<% end %>
+
+<% unless current_user %>
+<div class="main-button">
+  <form action="/users/new" method="get">
+    <input class="button-big" type="submit" value="Sign up"/>
+  </form>
+</div>
+<div class="main-button">
+  <form action="/users/new" method="get">
+    <input class="button-big" type="submit" value="Log in"/>
+  </form>
+</div>
+<% end %>
+</ul>

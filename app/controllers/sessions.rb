@@ -9,7 +9,7 @@ class CollectivePlaylist < Sinatra::Base
     if user
       session[:id] = user.id
       flash.next[:notice] = ["Welcome to Collective Playlist, #{user.name}!"]
-      redirect "/dashboard"
+      redirect "/"
     else
       flash.next[:error] = ["Incorrect username and/or password"]
       redirect "/sessions/new"
