@@ -1,6 +1,6 @@
 ## Collective Playlist ##
 
-Collective Playlist is a web app I made for creating playlists together.  
+Collective Playlist is a web app I made for creating playlists together with friends. It allows you to create a playlist and invite other users to contribute tracks to it.  
 
 The idea came to me during the graduation of our seniors at Makers Academy. There was no music during social part of the event and I thought... it would be nice to have music on our graduation. But how to guarantee that everyone would be happy with the choice of music? Here enters Collective Playlist :smile:.  
 
@@ -15,7 +15,7 @@ I developed the MVP over Christmas break.
 * adding tracks to playlists  
 * viewing playlists with their contributors and tracks  
 
-####Areas for further development:####  
+####Areas for further development:####
 * sending invites for friends to join and contribute  
 * email confirmations  
 * integration with Spotify  
@@ -24,7 +24,7 @@ I developed the MVP over Christmas break.
 * auto-complete for usernames when adding contributors  
 * auto-complete for tracks after Spotify integration  
 
-### How to run: ###  
+### How to run: ###
 Either go to [Collective Playlist on Heroku](https://collective-playlist.herokuapp.com/playlists/2) or  
 1. fork and clone this repo to your local machine  
 2. go to project repo in your terminal  
