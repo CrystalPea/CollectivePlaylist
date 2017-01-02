@@ -16,6 +16,9 @@ I developed the MVP over Christmas break.
 * viewing playlists with their contributors and tracks  
 
 ####Areas for further development:####
+* deleting tracks
+* being able to see all playlists
+* being able to set a playlist to public or private 
 * sending invites for friends to join and contribute  
 * email confirmations  
 * integration with Spotify  
