@@ -4,10 +4,11 @@
 
 <% n = 1
 Playlist.all.each do |playlist| %>
-  <div class="page-items">
-    <h3><a class="header-link" href="/playlists/<%=playlist.id%>">&#9835; <%=playlist.title%></a></h3>
-      <p>Admin: <%= (User.get playlist.admin_id).name%></p>
-    <p>Tracks per person: <%= playlist.tracks_per_person%></p>
+<div class="page-items">
+  <h3><a class="header-link" href="/playlists/<%=playlist.id%>">&#9835; <%=playlist.title%></a></h3>
+  <p>Admin: <%= (User.get playlist.admin_id).name%></p>
+  <p>Tracks per person: <%= playlist.tracks_per_person%></p>
+  <% if current_user %>
     <% if playlist.users.include? current_user %>
       <p> You can add <%= playlist.tracks_per_person - (playlist.tracks && current_user.tracks).count %> more track(s) </p>
 
@@ -25,5 +26,7 @@ Playlist.all.each do |playlist| %>
         <input class="button-small" type=submit value="Add contributor(s)" />
       </form>
     <% end %>
-  </div>
+    <% end %>
+    </div>
+
 <% end %>
