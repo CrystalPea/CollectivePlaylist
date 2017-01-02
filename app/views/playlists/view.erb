@@ -8,13 +8,15 @@ Playlist.all.each do |playlist| %>
     <h3><a class="header-link" href="/playlists/<%=playlist.id%>">&#9835; <%=playlist.title%></a></h3>
       <p>Admin: <%= (User.get playlist.admin_id).name%></p>
     <p>Tracks per person: <%= playlist.tracks_per_person%></p>
-    <p> You can add <%= playlist.tracks_per_person - (playlist.tracks && current_user.tracks).count %> more track(s) </p>
+    <% if playlist.users.include? current_user %>
+      <p> You can add <%= playlist.tracks_per_person - (playlist.tracks && current_user.tracks).count %> more track(s) </p>
 
-    <%if (playlist.tracks && current_user.tracks).count < playlist.tracks_per_person %>
-      <form action="/tracks/new" method="get">
-        <input type='hidden' name="playlist_id"  value="<%=playlist.id%>"/>
-        <input class="button-small" type=submit value="Add track(s)" />
-      </form>
+      <%if (playlist.tracks && current_user.tracks).count < playlist.tracks_per_person %>
+        <form action="/tracks/new" method="get">
+          <input type='hidden' name="playlist_id"  value="<%=playlist.id%>"/>
+          <input class="button-small" type=submit value="Add track(s)" />
+        </form>
+      <% end %>
     <% end %>
 
     <%if playlist.admin_id == current_user.id %>
