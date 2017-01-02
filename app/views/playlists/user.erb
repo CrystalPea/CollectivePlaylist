@@ -1,9 +1,9 @@
 <div class="pagetop">
-  <h2>All Playlists:</h2>
+  <h2>My playlists:</h2>
 </div>
 
 <% n = 1
-Playlist.all.each do |playlist| %>
+current_user.playlists.each do |playlist| %>
   <div class="page-items">
     <h3><a class="header-link" href="/playlists/<%=playlist.id%>">&#9835; <%=playlist.title%></a></h3>
       <p>Admin: <%= (User.get playlist.admin_id).name%></p>

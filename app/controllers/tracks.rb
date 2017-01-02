@@ -23,7 +23,7 @@ class CollectivePlaylist < Sinatra::Base
     if track.save
       session[:playlist_id] = nil
       flash.next[:notice] = ["Track has been added to '#{playlist.title}'"]
-      redirect "/playlists/view"
+      redirect "/playlists/user"
     else
       flash.next[:error] = track.errors.full_messages
       redirect "/tracks/new"

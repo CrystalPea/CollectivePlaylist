@@ -22,7 +22,7 @@ RSpec.feature "Playlist creation" do
     playlist_count = Playlist.all.count
     sign_up(user_1)
     create_playlist(playlist_1)
-    expect(current_path).to eq "/playlists/view"
+    expect(current_path).to eq "/playlists/user"
     message = "Your playlist 'Neat Playlist' has been created"
     expect(page).to have_content(message)
     expect(Playlist.all.count).to eq (playlist_count + 1)
@@ -58,7 +58,7 @@ RSpec.feature "Playlist creation" do
     fill_in 'description', with: ""
     select 2, from: 'tracks_per_person'
     click_button "Create Playlist"
-    expect(current_path).to eq "/playlists/view"
+    expect(current_path).to eq "/playlists/user"
     message = "Your playlist 'Neat Playlist' has been created"
     expect(page).to have_content(message)
     expect(Playlist.all.count).to eq (playlist_count + 1)

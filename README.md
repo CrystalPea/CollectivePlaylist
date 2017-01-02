@@ -13,12 +13,12 @@ I developed the MVP over Christmas break.
 * creating playlists  
 * adding contributors to playlists  
 * adding tracks to playlists  
-* viewing playlists with their contributors and tracks  
+* viewing all playlists with their contributors and tracks  
+* viewing own playlists
 
 ####Areas for further development:####
-* deleting tracks
-* being able to see all playlists
-* being able to set a playlist to public or private 
+* deleting tracks  
+* being able to set a playlist to public or private  
 * sending invites for friends to join and contribute  
 * email confirmations  
 * integration with Spotify  

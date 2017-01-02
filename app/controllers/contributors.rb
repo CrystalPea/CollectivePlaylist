@@ -39,7 +39,7 @@ class CollectivePlaylist < Sinatra::Base
       end
         session[:playlist_id] = nil
         flash.next[:notice] = messages
-      redirect "playlists/view"
+      redirect "playlists/user"
     else
       flash.next[:error] = playlist.errors.full_messages
       redirect "/contributors/new"

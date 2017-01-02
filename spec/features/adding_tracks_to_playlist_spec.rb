@@ -43,7 +43,7 @@ RSpec.feature "Adding tracks to playlist" do
     add_track(track_1)
     expect(Track.all.count).to eq(track_count + 1)
     expect(Playlist.first.tracks.count).to eq 1
-    expect(current_path).to eq("/playlists/view")
+    expect(current_path).to eq("/playlists/user")
     expect(page).to have_content("Track has been added to 'Neat Playlist'")
   end
 
