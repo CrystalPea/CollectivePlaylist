@@ -54,4 +54,34 @@ RSpec.feature "Requesting to become a contributor" do
     message = "Your request has been sent"
     expect(page).to have_content(message)
   end
+
+  scenario "As an admin I want to approve request" do
+    sign_up(user_1)
+    create_playlist(playlist_1)
+    log_out
+    sign_up(user_2)
+    visit("/playlists/view")
+    click_link("♫ #{Playlist.first.title}")
+    click_button("I want to contribute")
+    log_out
+    log_in(user_1)
+    visit("/requests/view")
+    click_button("Accept")
+    expect(current_path).to eq "/requests/view"
+    message = "Miko has been added as Neat Playlist contributor"
+    expect(page).to have_content(message)
+    expect(Request.first.status).to eq "Accepted"
+  end
+
+  xscenario "As an admin I want to reject request" do
+
+  end
+
+  xscenario "I want to see if my request has been accepted" do
+
+  end
+
+  xscenario "As an admin I only want to receive one request per playlist per user" do
+
+  end
 end

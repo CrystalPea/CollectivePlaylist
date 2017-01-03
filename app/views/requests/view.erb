@@ -1,0 +1,19 @@
+<h3> Requests I received </h3>
+<% current_user.playlists.each do |playlist| %>
+Playlist: <%=playlist.title%>
+  <% playlist.requests.each do |request| %>
+    From: <%=request.user.name%>
+    <form action="/requests/respond" method="post">
+      <input type='hidden' name="request_id"  value="<%=request.id%>"/>
+      <input class="button-small" name="response" type=submit value="Accept" />
+      <input class="button-small" name="response" type=submit value="Reject" />
+    </form>
+  <% end %>
+<% end %>
+
+<h3> Requests I made: </h3>
+<% current_user.requests.each do |request| %>
+For Playlist: <%= request.playlist.title %>
+To: <%= User.get(request.playlist.admin_id).name %>
+Status: <%= request.status %>
+<% end %>

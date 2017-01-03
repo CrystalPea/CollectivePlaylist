@@ -25,12 +25,12 @@ class CollectivePlaylist < Sinatra::Base
   end
 
   get '/playlists/user' do
-    if current_user
-      session[:playlist_id] = nil
-      erb :'playlists/user'
-    else flash.next[:error] = ["You need to be logged in to view your playlists"]
+    unless current_user
+      flash.next[:error] = ["You need to be logged in to view your playlists"]
       redirect "/"
     end
+    session[:playlist_id] = nil
+    erb :'playlists/user'
   end
 
   get '/playlists/:playlist_id' do

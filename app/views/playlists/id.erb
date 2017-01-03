@@ -18,7 +18,7 @@
           <input class="button" type=submit value="Add track(s)" />
         </form>
       <% end %></p>
-    <% else %>
+    <% elsif @playlist.requests - current_user.requests == [] %>
       <form action="/requests" method="post">
         <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
         <input class="button" type=submit value="I want to contribute" />
