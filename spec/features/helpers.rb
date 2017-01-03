@@ -30,4 +30,11 @@ module Helpers
     click_link("Log out")
   end
 
+  def log_in(user)
+    click_link("Log in")
+    fill_in "username", with: "pea"
+    fill_in "password", with: "Mikocian"
+    click_button "Log in"
+  end
+
 end
