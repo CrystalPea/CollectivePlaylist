@@ -1,9 +1,10 @@
-<h3> Requests I received </h3>
+<h2> Requests I received </h2>
 <% current_user.playlists.each do |playlist|%>
   <% if playlist.admin_id == current_user.id %>
-  Playlist: <%=playlist.title%>
+  <div class="page-items">
+  <h3>&#9835; <%=playlist.title%></h3>
     <% playlist.requests.each do |request| %>
-      From: <%=request.user.name%>
+      <p>From: <%=request.user.name%></p>
       <% if request.pending? %>
       <form action="/requests/respond" method="post">
         <input type='hidden' name="request_id"  value="<%=request.id%>"/>
@@ -11,11 +12,13 @@
         <input class="button-small" name="response" type=submit value="Reject" />
       </form>
       <% end %>
+      <p></p>
     <% end %>
+  </div>
   <% end %>
 <% end %>
 
-<h3> Requests I made: </h3>
+<h2> Requests I made: </h2>
 <% current_user.requests.each do |request| %>
 For Playlist: <%= request.playlist.title %>
 To: <%= User.get(request.playlist.admin_id).name %>

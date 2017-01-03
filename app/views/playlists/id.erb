@@ -11,8 +11,8 @@
     <%end%>
   <% if current_user %>
     <% if @playlist.users.include? current_user %>
-      <p> You can add <%= @playlist.tracks_per_person - (@playlist.tracks && current_user.tracks).count %> more track(s) </p>
-      <p><%if (@playlist.tracks && current_user.tracks).count < @playlist.tracks_per_person %>
+      <p> You can add <%= @playlist.tracks_per_person - (@playlist.tracks & current_user.tracks).count %> more track(s) </p>
+      <p><%if (@playlist.tracks & current_user.tracks).count < @playlist.tracks_per_person %>
         <form action="/tracks/new" method="get">
           <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
           <input class="button" type=submit value="Add track(s)" />
