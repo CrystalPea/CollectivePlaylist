@@ -32,8 +32,8 @@ module Helpers
 
   def log_in(user)
     click_link("Log in")
-    fill_in "username", with: "pea"
-    fill_in "password", with: "Mikocian"
+    fill_in "username", with: user[:username]
+    fill_in "password", with: user[:password]
     click_button "Log in"
   end
 

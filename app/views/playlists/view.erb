@@ -17,7 +17,7 @@
           <input class="button-small" type=submit value="Add track(s)" />
         </form>
       <% end %>
-    <%  elsif playlist.requests - current_user.requests == [] %>
+    <% elsif !(playlist.requests.any? {|h| h[:user_id] == current_user.id}) %>
       <form action="/requests" method="post">
         <input type='hidden' name="playlist_id"  value="<%=playlist.id%>"/>
         <input class="button-small" type=submit value="I want to contribute" />

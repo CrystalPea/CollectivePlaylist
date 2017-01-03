@@ -22,11 +22,17 @@ class CollectivePlaylist < Sinatra::Base
     request = Request.get params[:request_id]
     if params[:response] == "Accept"
       request.accepted = true
+      request.playlist.users << request.user
+      request.playlist.save
+      request.save
+      flash.next[:notice] = ["#{request.user.name} has been added as #{request.playlist.title} contributor"]
+      redirect "/requests/view"
     else
       request.rejected = true
+      request.save
+      flash.next[:notice] = ["#{request.user.name}'s request has been rejected."]
+      redirect "/requests/view"
     end
-    request.save
-    flash.next[:notice] = ["#{request.user.name} has been added as #{request.playlist.title} contributor"]
-    redirect "/requests/view"
+
   end
 end

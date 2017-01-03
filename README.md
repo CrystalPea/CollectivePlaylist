@@ -14,7 +14,10 @@ I developed the MVP over Christmas break.
 * adding contributors to playlists  
 * adding tracks to playlists  
 * viewing all playlists with their contributors and tracks  
-* viewing own playlists
+* viewing own playlists  
+* requesting to become a contributor  
+* accepting and rejecting contribution requests  
+* viewing request status  
 
 ####Areas for further development:####
 * deleting tracks  

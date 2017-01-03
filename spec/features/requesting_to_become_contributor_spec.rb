@@ -26,6 +26,12 @@ RSpec.feature "Requesting to become a contributor" do
   }
   end
 
+  let(:track_1) do {
+    artist: "Shpongle",
+    title: "Nothing Lasts"
+    }
+  end
+
   scenario "I want to request to become a contributor" do
     sign_up(user_1)
     create_playlist(playlist_1)
@@ -73,15 +79,71 @@ RSpec.feature "Requesting to become a contributor" do
     expect(Request.first.status).to eq "Accepted"
   end
 
-  xscenario "As an admin I want to reject request" do
+  scenario "I want to be able to contribute when my request is accepted" do
+    sign_up(user_1)
+    create_playlist(playlist_1)
+    log_out
+    sign_up(user_2)
+    visit("/playlists/view")
+    click_link("♫ #{Playlist.first.title}")
+    click_button("I want to contribute")
+    log_out
+    log_in(user_1)
+    visit("/requests/view")
+    click_button("Accept")
+    log_out
+    log_in(user_2)
+    visit("/playlists/view")
+    add_track(track_1)
+    expect(Playlist.first.tracks.count).to eq 1
 
   end
 
-  xscenario "I want to see if my request has been accepted" do
+  scenario "As an admin I want to reject request" do
+    sign_up(user_1)
+    create_playlist(playlist_1)
+    log_out
+    sign_up(user_2)
+    visit("/playlists/view")
+    click_link("♫ #{Playlist.first.title}")
+    click_button("I want to contribute")
+    log_out
+    log_in(user_1)
+    visit("/requests/view")
+    click_button("Reject")
+    expect(current_path).to eq "/requests/view"
+    message = "Miko's request has been rejected."
+    expect(page).to have_content(message)
+    expect(Request.first.status).to eq "Rejected"
+  end
+
+  scenario "I want to see if my request has been accepted" do
+    sign_up(user_1)
+    create_playlist(playlist_1)
+    log_out
+    sign_up(user_2)
+    visit("/playlists/view")
+    click_link("♫ #{Playlist.first.title}")
+    click_button("I want to contribute")
+    log_out
+    log_in(user_1)
+    visit("/requests/view")
+    click_button("Accept")
+    log_out
+    log_in(user_2)
+    visit("/requests/view")
+    expect(page).to have_content("Accepted")
 
   end
 
-  xscenario "As an admin I only want to receive one request per playlist per user" do
-
+  scenario "As an admin I only want to receive one request per playlist per user" do
+    sign_up(user_1)
+    create_playlist(playlist_1)
+    log_out
+    sign_up(user_2)
+    visit("/playlists/view")
+    click_link("♫ #{Playlist.first.title}")
+    click_button("I want to contribute")
+    expect(page).not_to have_content("I want to contribute")
   end
 end
