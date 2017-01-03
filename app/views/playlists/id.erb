@@ -9,7 +9,7 @@
     <%@playlist.tracks.each do |track|%>
       <p>&#9834; <%=track.title%> by <%=track.artist%> (contributed by <%=track.users.first.name%>)</p>
     <%end%>
-
+  <% if current_user %>
     <% if @playlist.users.include? current_user %>
       <p> You can add <%= @playlist.tracks_per_person - (@playlist.tracks && current_user.tracks).count %> more track(s) </p>
       <p><%if (@playlist.tracks && current_user.tracks).count < @playlist.tracks_per_person %>
@@ -18,7 +18,13 @@
           <input class="button" type=submit value="Add track(s)" />
         </form>
       <% end %></p>
+    <% else %>
+      <form action="/requests" method="post">
+        <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
+        <input class="button" type=submit value="I want to contribute" />
+      </form>
     <% end %>
+  <% end %>
   </div>
 
   <div id="playlist-contributors">
@@ -26,7 +32,7 @@
     <%@playlist.users.each do |user| %>
     <p>☺ <%=user.name%></p>
     <%end%>
-    <%if @playlist.admin_id == current_user.id %>
+    <%if current_user && @playlist.admin_id == current_user.id %>
       <form action="/contributors/new" method="get">
         <input type='hidden' name="playlist_id"  value="<%=@playlist.id%>"/>
         <input class="button" type=submit value="Add contributor(s)" />
