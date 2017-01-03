@@ -28,7 +28,7 @@ I developed the MVP over Christmas break.
 * auto-complete for tracks after Spotify integration  
 
 ### How to run: ###
-Either go to [Collective Playlist on Heroku](https://collective-playlist.herokuapp.com/playlists/2) or  
+Either go to [Collective Playlist on Heroku](https://collective-playlist.herokuapp.com/) or  
 1. fork and clone this repo to your local machine  
 2. go to project repo in your terminal  
 3. create databases for the project  
