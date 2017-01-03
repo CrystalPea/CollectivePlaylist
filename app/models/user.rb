@@ -15,6 +15,7 @@ class User
 
   has n, :playlists, :through => Resource
   has n, :tracks, :through => Resource
+  has n, :requests
 
   validates_format_of :email, :as => :email_address
   validates_uniqueness_of :username, :email

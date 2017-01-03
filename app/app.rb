@@ -7,6 +7,7 @@ require_relative 'controllers/sessions'
 require_relative 'controllers/playlists'
 require_relative 'controllers/tracks'
 require_relative 'controllers/contributors'
+require_relative 'controllers/requests'
 require_relative 'server'
 
 class CollectivePlaylist < Sinatra::Base

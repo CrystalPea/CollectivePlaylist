@@ -9,6 +9,7 @@ class Playlist
 
   has n, :users, :through => Resource
   has n, :tracks, :through => Resource
+  has n, :requests
 
   validates_presence_of :title, :tracks_per_person, :admin_id
 

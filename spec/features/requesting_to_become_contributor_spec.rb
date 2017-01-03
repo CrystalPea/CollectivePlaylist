@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.feature "Playlist creation" do
+RSpec.feature "Requesting to become a contributor" do
   include Helpers
 
   let(:user_1) do {
@@ -43,5 +43,8 @@ RSpec.feature "Playlist creation" do
     expect(Request.all.count).to eq 0
     click_button("I want to contribute")
     expect(Request.all.count).to eq 1
+    expect(current_path).to eq("/playlists/view")
+    message = "Your request has been sent"
+    expect(page).to have_content(message)
   end
 end
