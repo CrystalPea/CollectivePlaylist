@@ -20,7 +20,8 @@
 
 <h2> Requests I made: </h2>
 <% current_user.requests.each do |request| %>
-For Playlist: <%= request.playlist.title %>
-To: <%= User.get(request.playlist.admin_id).name %>
-Status: <%= request.status %>
+<p>For Playlist: <%= request.playlist.title %></p>
+<p>To: <%= User.get(request.playlist.admin_id).name %></p>
+<p>Status: <%= request.status %></p>
+<p></p>
 <% end %>
